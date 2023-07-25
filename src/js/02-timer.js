@@ -1,6 +1,7 @@
 import flatpickr from "flatpickr";
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 
 const refs = {
     inputEl : document.querySelector("#datetime-picker"),
@@ -21,16 +22,42 @@ refs.startEl.addEventListener("click", onClickStart);
         onClose(selectedDates) {  
            
         if((selectedDates[0]).getTime() < Date.now()){
-            alert("error");
+            Notiflix.Report.warning("Please choose a date in the future");
             makeDisableButton();
              return;
         }
-            makeAbleButton();                  
+            
+        makeAbleButton();   
+        Notiflix.Notify.success("Well done");         
     },
 }; 
 
 flatpickr("#datetime-picker", options);
 
+function onClickStart() {    
+    
+    makeDisableButton();
+
+    const intervalId = setInterval(() => {        
+    
+    const distance = calcDistance(getDate());
+        
+    fillCountDown(distance);
+        
+        if (distance < 0) {  
+            
+            Notiflix.Report.success("EXPIRED");
+            
+            clearInterval(intervalId);
+            
+            makeAbleButton();
+            
+            fillCountDown(0);        
+        }
+      
+    }, 1000);
+};   
+   
 function getDate() {
     let date = refs.inputEl._flatpickr.selectedDates[0].getTime();
     return date;
@@ -52,36 +79,16 @@ function fillCountDown(value) {
 
 function makeAbleButton() {
     refs.startEl.removeAttribute("disabled");
-}
+};
 
 function makeDisableButton() {
     refs.startEl.setAttribute("disabled", "disabled");
-}
+};
 
-function onClickStart() {    
-    
-    makeDisableButton();
+function addLeadingZero(value){
+    return String(value).padStart(2, "0");
+};
 
-    const intervalId = setInterval(() => {        
-    
-    const distance = calcDistance(getDate());
-        
-    fillCountDown(distance);
-        
-        if (distance < 0) {  
-            
-            alert("EXPIRED");
-            
-            clearInterval(intervalId);
-            
-            makeAbleButton();
-            
-            fillCountDown(0);        
-        }
-      
-    }, 1000);
-};   
-   
 function convertMs(ms) {
     // Number of milliseconds per unit of time
     const second = 1000;
@@ -90,15 +97,15 @@ function convertMs(ms) {
     const day = hour * 24;
   
     // Remaining days
-    const days = Math.floor(ms / day);
+    const days = addLeadingZero(Math.floor(ms / day));
     // Remaining hours
-    const hours = Math.floor((ms % day) / hour);
+    const hours = addLeadingZero(Math.floor((ms % day) / hour));
     // Remaining minutes
-    const minutes = Math.floor(((ms % day) % hour) / minute);
+    const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
     // Remaining seconds
-    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+    const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
   
     return { days, hours, minutes, seconds };
-  }
+  };
 
 

@@ -29,3 +29,40 @@ img {
   border-radius: 4px;
   border-color: chocolate;
 }
+.timer{
+  display: flex;
+  gap: 20px;
+}
+.picker{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.field{
+  display: flex;
+  flex-direction: column;
+  text-align: center;  
+}
+
+.start-btn{ 
+  width: 70px;
+  height: 30px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.datetime{
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+.value{
+  font-weight: 700;
+  font-size: 30px;
+  color: rgba(16, 3, 128, 0.747);
+}
+.label{
+  font-weight: 400;
+}
