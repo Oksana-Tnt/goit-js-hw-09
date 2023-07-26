@@ -12,6 +12,8 @@ const refs = {
     secondsEl : document.querySelector("[data-seconds]"),
 };
 
+
+
 refs.startEl.addEventListener("click", onClickStart);
         
     const options = {
@@ -38,10 +40,11 @@ function onClickStart() {
     
     makeDisableButton();
 
-    const intervalId = setInterval(() => {        
-    
-    const distance = calcDistance(getDate());
-        
+    const intervalId = setInterval(() => {     
+           
+    const currentDate = getDate();
+    const distance = calcDistance(currentDate); 
+
     fillCountDown(distance);
         
         if (distance < 0) {  
@@ -59,14 +62,12 @@ function onClickStart() {
 };   
    
 function getDate() {
-    let date = refs.inputEl._flatpickr.selectedDates[0].getTime();
-    return date;
+   return date = refs.inputEl._flatpickr.selectedDates[0].getTime(); 
 }
 
 function calcDistance(value) {     
-    const currentTime = Date.now();
-    const distance = value - currentTime;
-    return distance;
+   const currentTime = Date.now();   
+   return distance = value-currentTime;
 }
 
 function fillCountDown(value) {
