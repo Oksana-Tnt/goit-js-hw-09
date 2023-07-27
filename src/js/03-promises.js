@@ -6,7 +6,6 @@ import Notiflix from 'notiflix';
  formEl.addEventListener("submit", onSubmitForm);
 
   function onSubmitForm(event) {
-
   event.preventDefault();
 
   const firstDelay = Number(formEl.elements.delay.value);
@@ -16,18 +15,17 @@ import Notiflix from 'notiflix';
   setTimeout(() => {  
     
     for (let i = 0; i < amount; i += 1) {
-
-      createPromise(i, stepDelay)
+       createPromise(i, stepDelay)
         .then(({ position, delay}) => {
-          Notiflix.Notify.success(`✅ Fulfilled promise ${i+1} in ${i*stepDelay + firstDelay}ms`);
-        })
+           Notiflix.Notify.success(`✅ Fulfilled promise ${position +1} in ${position * delay + firstDelay}ms`);
+         })
         .catch(({ position, delay}) => {
-          Notiflix.Notify.failure(`❌ Rejected promise ${i+1} in ${i*stepDelay + firstDelay}ms`);
-        }); 
-    }
+           Notiflix.Notify.failure(`❌ Rejected promise ${position +1} in ${position* delay + firstDelay}ms`);
+         }); 
+
+      }
   
-  }, firstDelay);
-  
+  }, firstDelay);  
 };
 
 function createPromise(position, delay) {
@@ -39,6 +37,6 @@ function createPromise(position, delay) {
       } else {
         rej({ position, delay });
       }
-    }, position*delay);       
+    }, position * delay);       
   });  
 }
