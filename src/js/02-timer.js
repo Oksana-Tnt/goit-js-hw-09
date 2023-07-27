@@ -37,10 +37,11 @@ function onClickStart() {
     
     makeDisableButton();
 
-    const intervalId = setInterval(() => {     
-           
-    const currentDate = getDate();
-    const distance = calcDistance(currentDate); 
+    const intervalId = setInterval(() => {    
+
+    const currentTime = Date.now();             
+    const dateCountDown = getDate();
+    const distance = dateCountDown-currentTime; 
 
     fillCountDown(distance);
         
@@ -61,11 +62,6 @@ function onClickStart() {
 function getDate() {
    const date = refs.inputEl._flatpickr.selectedDates[0].getTime(); 
    return date;
-}
-
-function calcDistance(value) {     
-   const currentTime = Date.now();   
-   return distance = value-currentTime;
 }
 
 function fillCountDown(value) {
