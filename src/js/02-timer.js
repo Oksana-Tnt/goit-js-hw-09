@@ -59,7 +59,8 @@ function onClickStart() {
 };   
    
 function getDate() {
-   return date = refs.inputEl._flatpickr.selectedDates[0].getTime(); 
+   const date = refs.inputEl._flatpickr.selectedDates[0].getTime(); 
+   return date;
 }
 
 function calcDistance(value) {     
