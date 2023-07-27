@@ -1,5 +1,4 @@
 import flatpickr from "flatpickr";
-import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from 'notiflix';
 
@@ -11,8 +10,6 @@ const refs = {
     minutesEl : document.querySelector("[data-minutes]"),
     secondsEl : document.querySelector("[data-seconds]"),
 };
-
-
 
 refs.startEl.addEventListener("click", onClickStart);
         
