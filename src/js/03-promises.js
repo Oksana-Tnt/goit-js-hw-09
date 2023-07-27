@@ -18,11 +18,11 @@ import Notiflix from 'notiflix';
     for (let i = 0; i < amount; i += 1) {
 
       createPromise(i, stepDelay)
-        .then(({ position, delay }) => {
-          Notiflix.Notify.success(`✅ Fulfilled promise ${i} in ${i*stepDelay + firstDelay}ms`);
+        .then(({ position, delay}) => {
+          Notiflix.Notify.success(`✅ Fulfilled promise ${i+1} in ${i*stepDelay + firstDelay}ms`);
         })
-        .catch(({ position, delay }) => {
-          Notiflix.Notify.failure(`❌ Rejected promise ${i} in ${i*stepDelay + firstDelay}ms`);
+        .catch(({ position, delay}) => {
+          Notiflix.Notify.failure(`❌ Rejected promise ${i+1} in ${i*stepDelay + firstDelay}ms`);
         }); 
     }
   
