@@ -51,9 +51,9 @@ function onClickStart() {
             
             clearInterval(intervalId);
             
-            makeAbleButton();
-            
-            fillCountDown(0);        
+            makeAbleButton();            
+         
+            flatpickr.clear();      
         }
       
     }, 1000);
